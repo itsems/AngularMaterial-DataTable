@@ -1,0 +1,47 @@
+<div class="mat-elevation-z8">
+  <mat-form-field>
+    <input
+      matInput
+      (keyup)="applyFilter($event.target.value)"
+      placeholder="Filter"
+    />
+  </mat-form-field>
+  <table mat-table [dataSource]="dataSource" matSort>
+    <!-- 我是表頭 我的Def定義了有哪些表頭 -->
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <!-- 我是值 我的Def定義了我有哪些column的值-->
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
+      <td mat-cell *matCellDef="let element">{{ element.name }}</td>
+    </ng-container>
+
+    <!-- Position Column -->
+    <ng-container matColumnDef="position">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>No.</th>
+      <td mat-cell *matCellDef="let element">{{ element.position }}</td>
+    </ng-container>
+    <!-- 我是哪個表頭的值 -->
+    <!-- 我是表頭 position 的值，但是我不受 html template 順序影響 -->
+    <!-- 我在這裡是第二個，但是在前台我是第一個 -->
+
+    <!-- Weight Column -->
+    <ng-container matColumnDef="weight">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Weight</th>
+      <td mat-cell *matCellDef="let element">{{ element.weight }}</td>
+    </ng-container>
+
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="symbol">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Symbol</th>
+      <td mat-cell *matCellDef="let element">{{ element.symbol }}</td>
+    </ng-container>
+  </table>
+
+  <mat-paginator
+    [pageSizeOptions]="[5, 10, 15]"
+    showFirstLastButtons
+  ></mat-paginator>
+</div>
